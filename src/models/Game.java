@@ -63,6 +63,10 @@ public class Game {
         return categories;
     }
 
+    public ArrayList<News> getNewsList() {
+        return newsList;
+    }
+
     public void addGameModerator(User u){
         this.gameModerators.add(u);
     }

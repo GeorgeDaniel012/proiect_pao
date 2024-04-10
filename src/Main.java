@@ -1,6 +1,7 @@
 import models.*;
 import org.w3c.dom.css.Counter;
 import services.GameService;
+import services.NewsService;
 import services.RecordService;
 import services.UserService;
 
@@ -64,6 +65,9 @@ public class Main {
         Run r4 = RecordService.addRunToCategory(c1, "bsxcd", u1, "jfsc", 3, 11, 5, 447);
         CounterRecord r5 = RecordService.addCounterRecordToCategory(c2, "aaaa", u2, "link2", 23);
         Run r6 = RecordService.addRunToCategory(c3, "bsxcd", u5, "yay", 0, 45, 34, 144);
+
+        News n1 = NewsService.addNewsToGame(g2, u2, "Everest Core Update", "Everest had one of the biggest updates so far with Everest " +
+                "Core becoming the \"Stable\" version. Here is what you need to know as a player and what rule changes are happening:");
 
 //        c1.addRecord(r1);
 //        c1.show();

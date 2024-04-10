@@ -50,4 +50,12 @@ public class News {
         System.out.println("Header: " + header);
         System.out.println("Content: " + content);
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + newsId + "\n" +
+                "Author: '" + author.getUsername() + "'\n" +
+                "Header: '" + header + "'\n" +
+                "Content: '" + content;
+    }
 }

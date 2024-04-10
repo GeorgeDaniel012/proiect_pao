@@ -71,6 +71,18 @@ public class RecordService {
         }
     }
 
+    public static ArrayList<Record> getRecordsByCategory(Category cat){
+        ArrayList<Record> results = new ArrayList<>();
+
+        for(Record record: records){
+            if(record.getCategory().equals(cat)){
+                results.add(record);
+            }
+        }
+
+        return results;
+    }
+
     public static void showRecordsByCategory(Category cat){
         if(cat == null){
             throw new NullPointerException();

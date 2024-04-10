@@ -79,7 +79,7 @@ public class GameService {
     }
 
     public static void showGameDetailed(Game game){
-        System.out.println("Game " + game.getGameName());
+        System.out.println("Game: " + game.getGameName());
         System.out.println("Id: " + game.getGameId());
         System.out.println("Description: '" + game.getGameDescription() + "'");
 
@@ -88,9 +88,14 @@ public class GameService {
             System.out.print(user.getUsername() + ' ');
         }
 
-        System.out.println("\nCategories:");
+        System.out.println("\n\nCategories:");
         for(Category cat: game.getCategories()){
             System.out.println(cat.toString());
+        }
+
+        System.out.println("\nNews: ");
+        for(News news: game.getNewsList()){
+            System.out.println(news.toString());
         }
         System.out.println();
     }
