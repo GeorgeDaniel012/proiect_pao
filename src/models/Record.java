@@ -1,19 +1,19 @@
-package domain;
+package models;
 
 public abstract class Record {
     protected final int recordId;
     protected static int maxRecordId = 0;
     protected String recordDescription;
     protected final User user;
-    protected final Game game;
+    protected final Category category;
     protected String recordLink;
 
-    public Record(String recordDescription, User user, Game game, String recordLink) {
+    public Record(String recordDescription, User user, Category category, String recordLink) {
         this.recordId = maxRecordId;
         maxRecordId++;
         this.recordDescription = recordDescription;
         this.user = user;
-        this.game = game;
+        this.category = category;
         this.recordLink = recordLink;
     }
 
@@ -37,8 +37,8 @@ public abstract class Record {
         return user;
     }
 
-    public Game getGame() {
-        return game;
+    public Category getCategory() {
+        return category;
     }
 
     public String getRecordLink() {

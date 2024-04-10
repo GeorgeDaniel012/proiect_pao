@@ -1,4 +1,4 @@
-package domain;
+package models;
 
 public enum CategoryType {
     RUN, COUNTER

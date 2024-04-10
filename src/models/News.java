@@ -1,4 +1,4 @@
-package domain;
+package models;
 
 public class News {
     private final int newsId;

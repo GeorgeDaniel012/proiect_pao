@@ -1,4 +1,4 @@
-package domain;
+package models;
 
 import java.util.ArrayList;
 
@@ -100,6 +100,10 @@ public class Category {
     public void show(){
         System.out.println("Category name: " + categoryName);
         System.out.println("Category id: " + categoryId);
+        System.out.println("No of records: " + records.size());
     }
 
+    public void addRecord(Record r){
+        this.records.add(r);
+    }
 }

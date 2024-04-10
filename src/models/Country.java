@@ -1,4 +1,4 @@
-package domain;
+package models;
 
 public class Country {
     private final int countryId;
@@ -17,7 +17,7 @@ public class Country {
         this.countryName = "";
     }
 
-    public int getId_tara() {
+    public int getCountryId() {
         return countryId;
     }
 

@@ -1,10 +1,10 @@
-package domain;
+package models;
 
 public class Run extends Record {
     public Timer timer;
 
-    public Run(String recordDescription, User user, Game game, String recordLink, int hours, int minutes, int seconds, int milliseconds) {
-        super(recordDescription, user, game, recordLink);
+    public Run(String recordDescription, User user, Category category, String recordLink, int hours, int minutes, int seconds, int milliseconds) {
+        super(recordDescription, user, category, recordLink);
         this.timer = new Timer(hours, minutes, seconds, milliseconds);
     }
 

@@ -1,4 +1,4 @@
-package domain;
+package models;
 
 public class Timer {
     private int hours, minutes, seconds, milliseconds;
