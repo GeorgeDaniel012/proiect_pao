@@ -42,7 +42,34 @@ public class Timer {
         this.milliseconds = milliseconds;
     }
 
-    public void show(){
+    /*public void show(){
         System.out.println(hours + "h, " + minutes + "m, " + seconds + "s, " + milliseconds + "ms");
+    }*/
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(hours + ":");
+
+        // verificam daca minutele sunt de 2 cifre, daca nu adaugam 0
+        if(minutes < 10){
+            sb.append('0');
+        }
+        sb.append(minutes + ":");
+
+        // verificam daca secundele sunt de 2 cifre, daca nu adaugam 0
+        if(seconds < 10){
+            sb.append('0');
+        }
+        sb.append(seconds + ":");
+
+        // verificam daca milisecundele sunt de 3 cifre, daca nu adaugam unul sau doi de 0
+        if(milliseconds < 10){
+            sb.append("00");
+        } else if(milliseconds < 100){
+            sb.append('0');
+        }
+        sb.append(milliseconds);
+
+        return sb.toString();
     }
 }

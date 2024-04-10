@@ -48,4 +48,13 @@ public abstract class Record {
     public void setRecordLink(String recordLink) {
         this.recordLink = recordLink;
     }
+
+    @Override
+    public String toString() {
+        return "Runner: '" + user.getUsername() + "'\n" +
+                "Game: '" + category.getGame().getGameName() + "'\n" +
+                "Category: '" + category.getCategoryName() + "'\n" +
+                "Link: '" + recordLink + "'\n" +
+                "Description: '" + recordDescription + "'\n";
+    }
 }

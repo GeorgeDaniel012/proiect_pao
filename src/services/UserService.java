@@ -10,13 +10,15 @@ public class UserService {
 
     private UserService(){}
 
-    public static void addUser(User user){
+    public static User addUser(User user){
         users.add(user);
+        return user;
     }
 
-    public static void addUser(String username, Country country, String email, String gender){
+    public static User addUser(String username, Country country, String email, String gender){
         User user = new User(username, country, email, gender);
         users.add(user);
+        return user;
     }
 
     public static ArrayList<User> getUsers() {

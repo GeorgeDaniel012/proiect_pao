@@ -15,4 +15,18 @@ public class Run extends Record {
     public void setTimer(Timer timer) {
         this.timer = timer;
     }
+
+    @Override
+    public String toString() {
+/*        return "Runner: '" + user.getUsername() + "'\n" +
+                "Game: '" + category.getGame().getGameName() + "'\n" +
+                "Category: '" + category.getCategoryName() + "'\n" +
+                "Link: '" + recordLink + "'\n" +
+                "Description: '" + recordDescription + "'\n" +
+                timer.getHours() + ':' + timer.getMinutes() + ':' + timer.getSeconds() + ':' + timer.getMilliseconds() + "\n";*/
+
+        return super.toString() +
+                //timer.getHours() + ':' + timer.getMinutes() + ':' + timer.getSeconds() + ':' + timer.getMilliseconds() + "\n";
+                timer.toString();
+    }
 }

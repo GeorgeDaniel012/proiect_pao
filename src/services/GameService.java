@@ -9,13 +9,19 @@ public class GameService {
 
     private GameService(){}
 
-    public static void addGame(Game game){
+    public static Game addGame(Game game){
         games.add(game);
+        return game;
     }
 
-    public static void addGame(String gameName, String gameDescription, User moderator1){
+    public static Game addGame(String gameName, String gameDescription, User moderator1){
+        if(moderator1 == null){
+            throw new NullPointerException();
+        }
+
         Game game = new Game(gameName, gameDescription, moderator1);
         games.add(game);
+        return game;
     }
 
     public static ArrayList<Game> getGames() {
@@ -31,14 +37,34 @@ public class GameService {
         return null;
     }
 
-    public static void addRunCategory(Game game, String categoryName, String categoryDescription, boolean desc){
-        Category cat = new Category(categoryName, categoryDescription, game, CategoryType.RUN, desc);
-        game.addCategory(cat);
+    public static void addModeratorToGame(Game game, User user){
+        if(user == null){
+            throw new NullPointerException();
+        }
+
+        game.addGameModerator(user);
     }
 
-    public static void addCounterRecordCategory(Game game, String categoryName, String categoryDescription, String counterType, boolean desc){
+    // metoda care adauga o categorie de tip run
+    public static Category addRunCategory(Game game, String categoryName, String categoryDescription, boolean desc){
+        if(game == null){
+            throw new NullPointerException();
+        }
+
+        Category cat = new Category(categoryName, categoryDescription, game, CategoryType.RUN, desc);
+        game.addCategory(cat);
+        return cat;
+    }
+
+    // metoda care adauga o categorie de tip counter
+    public static Category addCounterRecordCategory(Game game, String categoryName, String categoryDescription, String counterType, boolean desc){
+        if(game == null){
+            throw new NullPointerException();
+        }
+
         Category cat = new Category(categoryName, categoryDescription, game, CategoryType.COUNTER, counterType, desc);
         game.addCategory(cat);
+        return cat;
     }
 
     public static void show(){
