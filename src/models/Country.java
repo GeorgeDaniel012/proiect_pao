@@ -37,4 +37,10 @@ public class Country {
         System.out.println("Country name: " + countryName);
         System.out.println("Country id: " + countryId);
     }
+
+    @Override
+    public String toString() {
+        return "Country id: '" + countryId + "'\n" +
+                "Country name: " + countryName + "'\n";
+    }
 }

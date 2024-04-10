@@ -66,11 +66,20 @@ public class User {
         this.gender = gender;
     }
 
-    public void show(){
+/*    public void show(){
         System.out.println("Username: " + username);
         System.out.println("User id: " + userId);
         System.out.println("User country: " + country.getCountryName());
         System.out.println("User email: " + email);
         System.out.println("User gender: " + gender);
+    }*/
+
+    @Override
+    public String toString() {
+        return "Id: " + userId + "\n" +
+                "Username: '" + username + "'\n" +
+                "Country: '" + country.getCountryName() + "'\n" +
+                "Email: '" + email + "'\n" +
+                "Gender: '" + gender + "'\n";
     }
 }

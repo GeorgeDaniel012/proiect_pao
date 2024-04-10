@@ -1,4 +1,5 @@
 import models.*;
+import services.UserService;
 
 import java.lang.Record;
 
@@ -10,6 +11,8 @@ public class Main {
 
         User u1 = new User("george", t2, "email@test.com", "male");
         User u2 = new User("ioana", t3, "email2@test.com", "female");
+        UserService.addUser(u1);
+        UserService.addUser(u2);
 
         Game g1 = new Game("Minecraft", u1);
         Game g2 = new Game("Celeste", u2);
@@ -35,6 +38,11 @@ public class Main {
         Run r1 = new Run("run 1", u1, c1, "link", 2, 3, 15, 120);
         c1.addRecord(r1);
         c1.show();
-        
+
+        CounterRecord r2 = new CounterRecord("run 2", u2, c2, "link2", 17);
+        c2.addRecord(r2);
+        c2.show();
+
+        UserService.show();
     }
 }
