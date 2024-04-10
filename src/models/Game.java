@@ -122,4 +122,14 @@ public class Game {
     public boolean isModerator(User u){
         return gameModerators.contains(u);
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + gameId + "\n" +
+                "Name: '" + gameName + "'\n" +
+                "Description: '" + gameDescription + "'\n" +
+                "No of Moderators: " + gameModerators.size() + "\n" +
+                "No of Categories: " + categories.size() + "\n" +
+                "No of News: " + newsList.size() + "\n";
+    }
 }

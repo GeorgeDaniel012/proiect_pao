@@ -1,5 +1,6 @@
 package services;
 
+import models.Country;
 import models.User;
 
 import java.util.ArrayList;
@@ -10,6 +11,11 @@ public class UserService {
     private UserService(){}
 
     public static void addUser(User user){
+        users.add(user);
+    }
+
+    public static void addUser(String username, Country country, String email, String gender){
+        User user = new User(username, country, email, gender);
         users.add(user);
     }
 
@@ -27,6 +33,7 @@ public class UserService {
     }
 
     public static void show(){
+        System.out.println("Users:\n");
         for(User user: users){
             System.out.println(user.toString());
         }
