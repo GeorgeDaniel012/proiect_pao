@@ -5,7 +5,7 @@ import models.*;
 import java.util.ArrayList;
 
 public class GameService {
-    private static ArrayList<Game> games = new ArrayList<Game>();
+    private static ArrayList<Game> games = new ArrayList<>();
 
     private GameService(){}
 

@@ -13,7 +13,7 @@ public class Category {
     private String counterType = "";
     //sortare descrescatoare, default fals
     private boolean desc = false;
-    private ArrayList<Record> records = new ArrayList<Record>();
+    private ArrayList<Record> records = new ArrayList<>();
 
 /*    public Category(String categoryName, Game game, CategoryType type) {
         this.categoryId = maxCategoryId;

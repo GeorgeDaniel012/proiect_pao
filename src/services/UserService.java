@@ -6,7 +6,7 @@ import models.User;
 import java.util.ArrayList;
 
 public class UserService {
-    private static ArrayList<User> users = new ArrayList<User>();
+    private static ArrayList<User> users = new ArrayList<>();
 
     private UserService(){}
 

@@ -8,11 +8,11 @@ public class Game {
     private String gameName;
     private String gameDescription;
     //un joc are cel putin un moderator
-    private ArrayList<User> gameModerators = new ArrayList<User>();
+    private ArrayList<User> gameModerators = new ArrayList<>();
     //un joc poate avea mai multe categorii
-    private ArrayList<Category> categories = new ArrayList<Category>();
+    private ArrayList<Category> categories = new ArrayList<>();
     //un joc poate avea mai multe stiri (news)
-    private ArrayList<News> newsList = new ArrayList<News>();
+    private ArrayList<News> newsList = new ArrayList<>();
 
     public Game(String gameName, User moderator1) {
         // un joc trebuie sa aiba cel putin un moderator!
