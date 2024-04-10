@@ -88,6 +88,7 @@ public class Main {
         GameService.showGameDetailed(g2);
 
         // codul de mai jos da o exceptie IllegalArgumentException
+        // deoarece incercam sa adaugam un counter record la o categorie de run-uri
         //CounterRecord r7 = RecordService.addCounterRecordToCategory(c1, "aaaa", u2, "link2", 23);
     }
 }

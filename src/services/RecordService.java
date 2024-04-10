@@ -50,6 +50,18 @@ public class RecordService {
         return r;
     }
 
+    public static ArrayList<Record> getRecordsByUser(User user){
+        ArrayList<Record> results = new ArrayList<>();
+
+        for(Record record: records){
+            if(record.getUser().equals(user)){
+                results.add(record);
+            }
+        }
+
+        return results;
+    }
+
     public static void showRecordsByUser(User user){
         if(user == null){
             throw new NullPointerException();
