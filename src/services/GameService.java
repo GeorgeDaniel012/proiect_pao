@@ -73,4 +73,25 @@ public class GameService {
             System.out.println(game.toString());
         }
     }
+
+    public static void showGame(Game game){
+        System.out.println(game.toString());
+    }
+
+    public static void showGameDetailed(Game game){
+        System.out.println("Game " + game.getGameName());
+        System.out.println("Id: " + game.getGameId());
+        System.out.println("Description: '" + game.getGameDescription() + "'");
+
+        System.out.print("Moderators: ");
+        for(User user: game.getGameModerators()){
+            System.out.print(user.getUsername() + ' ');
+        }
+
+        System.out.println("\nCategories:");
+        for(Category cat: game.getCategories()){
+            System.out.println(cat.toString());
+        }
+        System.out.println();
+    }
 }

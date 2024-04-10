@@ -106,4 +106,21 @@ public class Category {
     public void addRecord(Record r){
         this.records.add(r);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Category: '" + categoryName + "'\n" +
+                "Id: " + categoryId + "\n" +
+                "Description: '" + categoryDescription + "'\n" +
+                "Type: ");
+
+        if(type == CategoryType.COUNTER){
+            sb.append("Counter of " + counterType + "\n");
+        } else if(type == CategoryType.RUN){
+            sb.append("Timer based");
+        }
+
+        return sb.toString();
+    }
 }
