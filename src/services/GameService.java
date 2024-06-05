@@ -1,102 +1,57 @@
 package services;
 
-import models.*;
+import models.Category;
+import models.Game;
+import repositories.GameRepository;
+import repositories.UserRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameService {
-    private static ArrayList<Game> games = new ArrayList<>();
+    private final GameRepository gameRepository;
+    private static GameService gameService;
 
-    private GameService(){}
-
-    public static Game addGame(Game game){
-        games.add(game);
-        return game;
+    private GameService() {
+        this.gameRepository = new GameRepository();
     }
 
-    public static Game addGame(String gameName, String gameDescription, User moderator1){
-        if(moderator1 == null){
-            throw new NullPointerException();
+    public static GameService getInstance(){
+        if(gameService == null){
+            gameService = new GameService();
         }
-
-        Game game = new Game(gameName, gameDescription, moderator1);
-        games.add(game);
-        return game;
+        return gameService;
     }
 
-    public static ArrayList<Game> getGames() {
-        return games;
+    void addGame(Game game){
+        gameRepository.addGame(game);
     }
 
-    public static Game findGameByName(String name){
-        for(Game game: games){
-            if(game.getGameName().equals(name)){
-                return game;
-            }
-        }
-        return null;
+    void createCategory(Category category){
+        gameRepository.createCategory(category);
     }
 
-    public static void addModeratorToGame(Game game, User user){
-        if(user == null){
-            throw new NullPointerException();
-        }
-
-        game.addGameModerator(user);
+    Game getGameByName(String name){
+        return gameRepository.getGameByName(name);
     }
 
-    // metoda care adauga o categorie de tip run
-    public static Category addRunCategory(Game game, String categoryName, String categoryDescription, boolean desc){
-        if(game == null){
-            throw new NullPointerException();
-        }
-
-        Category cat = new Category(categoryName, categoryDescription, game, CategoryType.RUN, desc);
-        game.addCategory(cat);
-        return cat;
+    Game getGameById(int id){
+        return gameRepository.getGameById(id);
     }
 
-    // metoda care adauga o categorie de tip counter
-    public static Category addCounterRecordCategory(Game game, String categoryName, String categoryDescription, String counterType, boolean desc){
-        if(game == null){
-            throw new NullPointerException();
-        }
-
-        Category cat = new Category(categoryName, categoryDescription, game, CategoryType.COUNTER, counterType, desc);
-        game.addCategory(cat);
-        return cat;
+    List<Game> getAllGames(){
+        return gameRepository.getAllGames();
     }
 
-    public static void show(){
-        System.out.println("Games:\n");
-        for(Game game: games){
-            System.out.println(game.toString());
-        }
+    ArrayList<Category> getCategoriesByGame(Game game){
+        return gameRepository.getCategoriesByGame(game);
     }
 
-    public static void showGame(Game game){
-        System.out.println(game.toString());
+    void updateGameName(int id, String newName){
+        gameRepository.updateGameName(id, newName);
     }
 
-    public static void showGameDetailed(Game game){
-        System.out.println("Game: " + game.getGameName());
-        System.out.println("Id: " + game.getGameId());
-        System.out.println("Description: '" + game.getGameDescription() + "'");
-
-        System.out.print("Moderators: ");
-        for(User user: game.getGameModerators()){
-            System.out.print(user.getUsername() + ' ');
-        }
-
-        System.out.println("\n\nCategories:");
-        for(Category cat: game.getCategories()){
-            System.out.println(cat.toString());
-        }
-
-        System.out.println("\nNews: ");
-        for(News news: game.getNewsList()){
-            System.out.println(news.toString());
-        }
-        System.out.println();
+    void removeGame(int id){
+        gameRepository.removeGame(id);
     }
 }

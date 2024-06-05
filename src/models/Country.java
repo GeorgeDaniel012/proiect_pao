@@ -5,6 +5,11 @@ public class Country {
     private static int maxCountryId = 0;
     private String countryName;
 
+    public Country(int countryId, String countryName) {
+        this.countryId = countryId;
+        this.countryName = countryName;
+    }
+
     public Country(String countryName) {
         this.countryId = maxCountryId;
         maxCountryId++;

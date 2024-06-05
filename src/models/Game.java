@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private final int gameId;
@@ -8,18 +9,29 @@ public class Game {
     private String gameName;
     private String gameDescription;
     //un joc are cel putin un moderator
-    private ArrayList<User> gameModerators = new ArrayList<>();
+    //private ArrayList<User> gameModerators = new ArrayList<>();
+    private List<Integer> gameModerators = new ArrayList<>();
     //un joc poate avea mai multe categorii
-    private ArrayList<Category> categories = new ArrayList<>();
+    //private ArrayList<Category> categories = new ArrayList<>();
+    private List<Integer> categories = new ArrayList<>();
     //un joc poate avea mai multe stiri (news)
     private ArrayList<News> newsList = new ArrayList<>();
+
+    public Game(int gameId, String gameName, String gameDescription, User moderator1) {
+        this.gameId = gameId;
+        this.gameName = gameName;
+        this.gameDescription = gameDescription;
+        //this.gameModerators.add(moderator1);
+        this.gameModerators.add(moderator1.getUserId());
+    }
 
     public Game(String gameName, User moderator1) {
         // un joc trebuie sa aiba cel putin un moderator!
         this.gameId = maxGameId;
         maxGameId++;
         this.gameName = gameName;
-        this.gameModerators.add(moderator1);
+        //this.gameModerators.add(moderator1);
+        this.gameModerators.add(moderator1.getUserId());
         this.gameDescription = "";
     }
 
@@ -27,8 +39,17 @@ public class Game {
         this.gameId = maxGameId;
         maxGameId++;
         this.gameName = gameName;
-        this.gameModerators.add(moderator1);
+        //this.gameModerators.add(moderator1);
+        this.gameModerators.add(moderator1.getUserId());
         this.gameDescription = gameDescription;
+    }
+
+    public Game(int gameId, String gameName, String gameDescription, ArrayList<Integer> gameModerators, ArrayList<Integer> categories) {
+        this.gameId = gameId;
+        this.gameName = gameName;
+        this.gameDescription = gameDescription;
+        this.gameModerators = gameModerators;
+        this.categories = categories;
     }
 
     public int getGameId() {
@@ -55,11 +76,11 @@ public class Game {
         this.gameDescription = gameDescription;
     }
 
-    public ArrayList<User> getGameModerators() {
+    public List<Integer> getGameModerators() {
         return gameModerators;
     }
 
-    public ArrayList<Category> getCategories(){
+    public List<Integer> getCategories(){
         return categories;
     }
 
@@ -68,24 +89,24 @@ public class Game {
     }
 
     public void addGameModerator(User u){
-        this.gameModerators.add(u);
+        this.gameModerators.add(u.getUserId());
     }
 
     public void addCategory(Category c){
-        this.categories.add(c);
+        this.categories.add(c.getCategoryId());
     }
 
     //pt categorii de tip run
-    public void addCategory(String categoryName, String categoryDescription, CategoryType type, boolean desc){
-        Category c = new Category(categoryName, categoryDescription, this, type, desc);
-        this.categories.add(c);
-    }
-
-    //pt categorii de tip counter
-    public void addCategory(String categoryName, String categoryDescription, CategoryType type, String counterType, boolean desc){
-        Category c = new Category(categoryName, categoryDescription, this, type, counterType, desc);
-        this.categories.add(c);
-    }
+//    public void addCategory(String categoryName, String categoryDescription, CategoryType type, boolean desc){
+//        Category c = new Category(categoryName, categoryDescription, type, desc);
+//        this.categories.add(c.getCategoryId());
+//    }
+//
+//    //pt categorii de tip counter
+//    public void addCategory(String categoryName, String categoryDescription, CategoryType type, String counterType, boolean desc){
+//        Category c = new Category(categoryName, categoryDescription, type, counterType, desc);
+//        this.categories.add(c.getCategoryId());
+//    }
 
     public void addNews(News n){
         this.newsList.add(n);
@@ -96,17 +117,17 @@ public class Game {
         this.newsList.add(n);
     }
 
-    public void showGameModerators(){
-        for(User u: this.gameModerators){
-            System.out.println(u.getUsername() + ", id: " + u.getUserId());
-        }
-    }
+//    public void showGameModerators(){
+//        for(User u: this.gameModerators){
+//            System.out.println(u.getUsername() + ", id: " + u.getUserId());
+//        }
+//    }
 
-    public void showCategories(){
-        for(Category c: this.categories){
-            System.out.println(c.getCategoryName());
-        }
-    }
+//    public void showCategories(){
+//        for(Category c: this.categories){
+//            System.out.println(c.getCategoryName());
+//        }
+//    }
 
     public void showNews(){
         for(News n: this.newsList){
@@ -124,7 +145,7 @@ public class Game {
 
     //verificam daca un user este moderator pt joc
     public boolean isModerator(User u){
-        return gameModerators.contains(u);
+        return gameModerators.contains(u.getUserId());
     }
 
     @Override

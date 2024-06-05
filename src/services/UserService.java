@@ -1,43 +1,47 @@
 package services;
 
-import models.Country;
 import models.User;
+import repositories.CountryRepository;
+import repositories.UserRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
-    private static ArrayList<User> users = new ArrayList<>();
+    private final UserRepository userRepository;
+    private static UserService userService;
 
-    private UserService(){}
-
-    public static User addUser(User user){
-        users.add(user);
-        return user;
+    private UserService() {
+        this.userRepository = new UserRepository();
     }
 
-    public static User addUser(String username, Country country, String email, String gender){
-        User user = new User(username, country, email, gender);
-        users.add(user);
-        return user;
-    }
-
-    public static ArrayList<User> getUsers() {
-        return users;
-    }
-
-    public static User findUserByUsername(String username){
-        for(User user: users){
-            if(user.getUsername().equals(username)){
-                return user;
-            }
+    public static UserService getInstance(){
+        if(userService == null){
+            userService = new UserService();
         }
-        return null;
+        return userService;
     }
 
-    public static void show(){
-        System.out.println("Users:\n");
-        for(User user: users){
-            System.out.println(user.toString());
-        }
+    void addUser(User user){
+        userRepository.addUser(user);
+    }
+
+    User getUserByName(String name){
+        return userRepository.getUserByName(name);
+    }
+
+    User getUserById(int id){
+        return userRepository.getUserById(id);
+    }
+
+    List<User> getAllUsers(){
+        return userRepository.getAllUsers();
+    }
+
+    void updateUsername(int id, String newName){
+        userRepository.updateUsername(id, newName);
+    }
+
+    void removeUser(int id){
+        userRepository.removeUser(id);
     }
 }

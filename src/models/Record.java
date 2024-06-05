@@ -4,16 +4,26 @@ public abstract class Record {
     protected final int recordId;
     protected static int maxRecordId = 0;
     protected String recordDescription;
-    protected final User user;
-    protected final Category category;
+    //protected final User user;
+    protected final int userId;
+    //protected final Category category;
+    protected final int categoryId;
     protected String recordLink;
 
-    public Record(String recordDescription, User user, Category category, String recordLink) {
+    public Record(int recordId, String recordDescription, int userId, int categoryId, String recordLink) {
+        this.recordId = recordId;
+        this.recordDescription = recordDescription;
+        this.userId = userId;
+        this.categoryId = categoryId;
+        this.recordLink = recordLink;
+    }
+
+    public Record(String recordDescription, int userId, int categoryId, String recordLink) {
         this.recordId = maxRecordId;
         maxRecordId++;
         this.recordDescription = recordDescription;
-        this.user = user;
-        this.category = category;
+        this.userId = userId;
+        this.categoryId = categoryId;
         this.recordLink = recordLink;
     }
 
@@ -33,12 +43,12 @@ public abstract class Record {
         this.recordDescription = recordDescription;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
     public String getRecordLink() {
@@ -49,12 +59,12 @@ public abstract class Record {
         this.recordLink = recordLink;
     }
 
-    @Override
-    public String toString() {
-        return "Runner: '" + user.getUsername() + "'\n" +
-                "Game: '" + category.getGame().getGameName() + "'\n" +
-                "Category: '" + category.getCategoryName() + "'\n" +
-                "Link: '" + recordLink + "'\n" +
-                "Description: '" + recordDescription + "'\n";
-    }
+//    @Override
+//    public String toString() {
+//        return "Runner: '" + userId + "'\n" +
+//                "Game: '" + category.getGame().getGameName() + "'\n" +
+//                "Category: '" + category.getCategoryName() + "'\n" +
+//                "Link: '" + recordLink + "'\n" +
+//                "Description: '" + recordDescription + "'\n";
+//    }
 }

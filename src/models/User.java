@@ -8,6 +8,14 @@ public class User {
     private String email;
     private String gender;
 
+    public User(int userId, String username, Country country, String email, String gender) {
+        this.userId = userId;
+        this.username = username;
+        this.country = country;
+        this.email = email;
+        this.gender = gender;
+    }
+
     public User(String username, Country country, String email, String gender) {
         this.userId = maxUserId;
         maxUserId++;

@@ -3,8 +3,13 @@ package models;
 public class Run extends Record {
     public Timer timer;
 
-    public Run(String recordDescription, User user, Category category, String recordLink, int hours, int minutes, int seconds, int milliseconds) {
-        super(recordDescription, user, category, recordLink);
+    public Run(int recordId, String recordDescription, int userId, int categoryId, String recordLink, int hours, int minutes, int seconds, int milliseconds) {
+        super(recordId, recordDescription, userId, categoryId, recordLink);
+        this.timer = new Timer(hours, minutes, seconds, milliseconds);
+    }
+
+    public Run(String recordDescription, int userId, int categoryId, String recordLink, int hours, int minutes, int seconds, int milliseconds) {
+        super(recordDescription, userId, categoryId, recordLink);
         this.timer = new Timer(hours, minutes, seconds, milliseconds);
     }
 

@@ -13,7 +13,7 @@ public class Category {
     private String counterType = "";
     //sortare descrescatoare, default fals
     private boolean desc = false;
-    private ArrayList<Record> records = new ArrayList<>();
+    private ArrayList<Integer> records = new ArrayList<>();
 
 /*    public Category(String categoryName, Game game, CategoryType type) {
         this.categoryId = maxCategoryId;
@@ -22,6 +22,16 @@ public class Category {
         this.game = game;
         this.type = type;
     }*/
+
+    public Category(int categoryId, String categoryName, String categoryDescription, Game game, CategoryType type, boolean desc, ArrayList<Integer> records) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.categoryDescription = categoryDescription;
+        this.game = game;
+        this.type = type;
+        this.desc = desc;
+        this.records = records;
+    }
 
     public Category(String categoryName, String categoryDescription, Game game, CategoryType type, boolean desc) {
         this.categoryId = maxCategoryId;
@@ -93,7 +103,7 @@ public class Category {
         this.desc = desc;
     }
 
-    public ArrayList<Record> getRecords() {
+    public ArrayList<Integer> getRecords() {
         return records;
     }
 
@@ -104,7 +114,7 @@ public class Category {
     }
 
     public void addRecord(Record r){
-        this.records.add(r);
+        this.records.add(r.getRecordId());
     }
 
     @Override
