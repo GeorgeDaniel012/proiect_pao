@@ -67,4 +67,11 @@ public abstract class Record {
 //                "Link: '" + recordLink + "'\n" +
 //                "Description: '" + recordDescription + "'\n";
 //    }
+    @Override
+    public String toString() {
+        return "Runner: '" + userId + "'\n" +
+                "Category: '" + categoryId + "'\n" +
+                "Link: '" + recordLink + "'\n" +
+                "Description: '" + recordDescription + "'\n";
+    }
 }

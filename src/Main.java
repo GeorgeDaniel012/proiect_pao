@@ -2,10 +2,7 @@
 
 
 import models.*;
-import services.CountryService;
-import services.GameService;
-import services.RunService;
-import services.UserService;
+import services.*;
 
 import java.util.Scanner;
 
@@ -14,6 +11,7 @@ public class Main {
     private static final UserService userService = UserService.getInstance();
     private static final GameService gameService = GameService.getInstance();
     private static final RunService runService = RunService.getInstance();
+    private static final AuditService auditService = AuditService.getInstance();
 
 //    public static void main(String[] args) {
 //        Country t1 = new Country("Jamaica");
@@ -130,6 +128,9 @@ public class Main {
                 case "r":
                     runEdit();
                     break;
+                default:
+                    System.out.println("Invalid command.");
+                    break;
             }
         }
     }
@@ -154,25 +155,30 @@ public class Main {
             case "q":
                 break;
             case "a":
+                auditService.log("addCountry");
                 System.out.println("Country name:");
                 name = scanner.nextLine();
                 countryService.addCountry(new Country(name));
                 break;
             case "cn":
+                auditService.log("searchCountryByName");
                 System.out.println("Country name:");
                 name = scanner.nextLine();
                 System.out.println(countryService.getCountryByName(name));
                 break;
             case "ci":
+                auditService.log("searchCountryById");
                 System.out.println("Country id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println(countryService.getCountryById(id));
                 break;
             case "ca":
+                auditService.log("showAllCountries");
                 System.out.println(countryService.getAllCountries());
                 break;
             case "u":
+                auditService.log("updateCountryName");
                 System.out.println("Country id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
@@ -181,6 +187,7 @@ public class Main {
                 countryService.updateCountryName(id, name);
                 break;
             case "r":
+                auditService.log("removeCountry");
                 System.out.println("Country id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
@@ -212,6 +219,7 @@ public class Main {
             case "q":
                 break;
             case "a":
+                auditService.log("addUser");
                 System.out.println("Username:");
                 name = scanner.nextLine();
                 System.out.println("Country id:");
@@ -225,20 +233,24 @@ public class Main {
                         email, gender));
                 break;
             case "un":
+                auditService.log("searchUserByName");
                 System.out.println("Username:");
                 name = scanner.nextLine();
                 System.out.println(userService.getUserByName(name));
                 break;
             case "ui":
+                auditService.log("searchUserById");
                 System.out.println("User id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println(userService.getUserById(id));
                 break;
             case "ua":
+                auditService.log("showAllUsers");
                 System.out.println(userService.getAllUsers());
                 break;
             case "u":
+                auditService.log("updateUsername");
                 System.out.println("User id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
@@ -247,6 +259,7 @@ public class Main {
                 userService.updateUsername(id, name);
                 break;
             case "r":
+                auditService.log("removeUser");
                 System.out.println("User id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
@@ -280,6 +293,7 @@ public class Main {
             case "q":
                 break;
             case "ag":
+                auditService.log("addGame");
                 System.out.println("Game name:");
                 name = scanner.nextLine();
                 System.out.println("Description:");
@@ -291,20 +305,24 @@ public class Main {
                         userService.getUserById(id)));
                 break;
             case "gn":
+                auditService.log("searchGameByName");
                 System.out.println("Game name:");
                 name = scanner.nextLine();
                 System.out.println(gameService.getGameByName(name));
                 break;
             case "gi":
+                auditService.log("searchGameById");
                 System.out.println("Game id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println(gameService.getGameById(id));
                 break;
             case "ga":
+                auditService.log("showAllGames");
                 System.out.println(gameService.getAllGames());
                 break;
             case "u":
+                auditService.log("updateGameName");
                 System.out.println("Game id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
@@ -313,18 +331,21 @@ public class Main {
                 gameService.updateGameName(id, name);
                 break;
             case "r":
+                auditService.log("removeGame");
                 System.out.println("Game id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
                 gameService.removeGame(id);
                 break;
             case "c":
+                auditService.log("getGameCategories");
                 System.out.println("Game id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println(
                         gameService.getCategoriesByGame(gameService.getGameById(id)));
             case "ac":
+                auditService.log("createCategory");
                 System.out.println("Game id:");
                 id = scanner.nextInt();
                 scanner.nextLine();
@@ -363,6 +384,7 @@ public class Main {
             case "q":
                 break;
             case "a":
+                auditService.log("addRun");
                 System.out.println("User id:");
                 uid = scanner.nextInt();
                 scanner.nextLine();
@@ -383,24 +405,28 @@ public class Main {
                         h, m, s, ms));
                 break;
             case "ru":
+                auditService.log("searchRunsByUser");
                 System.out.println("User id:");
                 uid = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println(runService.getRunById(uid));
                 break;
             case "rc":
+                auditService.log("searchRunsFromCategory");
                 System.out.println("Category id:");
                 cid = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println(runService.getRunsByCategory(cid));
                 break;
             case "ri":
+                auditService.log("searchRunById");
                 System.out.println("Run id:");
                 rid = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println(runService.getRunById(rid));
                 break;
             case "u":
+                auditService.log("updateRunLink");
                 System.out.println("Run id:");
                 rid = scanner.nextInt();
                 scanner.nextLine();
@@ -409,6 +435,7 @@ public class Main {
                 runService.updateLink(rid, link);
                 break;
             case "r":
+                auditService.log("removeRun");
                 System.out.println("Run id:");
                 rid = scanner.nextInt();
                 scanner.nextLine();
