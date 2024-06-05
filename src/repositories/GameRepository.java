@@ -3,10 +3,7 @@ package repositories;
 import models.*;
 import util.DatabaseConfiguration;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,17 +31,23 @@ public class GameRepository implements IGameRepository {
             connection = DatabaseConfiguration.getDatabaseConnection();
             String sql1 = "INSERT INTO Games(gameName, gameDescription) VALUES (?, ?);";
 
-            PreparedStatement stmt1 =  connection.prepareStatement(sql1);
+            PreparedStatement stmt1 =  connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
             stmt1.setString(1, game.getGameName());
             stmt1.setString(2, game.getGameDescription());
 
             stmt1.executeUpdate();
 
+            ResultSet generatedKeys = stmt1.getGeneratedKeys();
+            int gameId = -1;
+            if (generatedKeys.next()) {
+                gameId = generatedKeys.getInt(1);
+            }
+
             String sql2 = "INSERT INTO GameModerators(userId, gameId) VALUES (?, ?)";
 
             PreparedStatement stmt2 = connection.prepareStatement(sql2);
             stmt2.setInt(1, game.getGameModerators().get(0));
-            stmt2.setInt(2, game.getGameId());
+            stmt2.setInt(2, gameId);
 
             stmt2.executeUpdate();
         }

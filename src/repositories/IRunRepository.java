@@ -11,7 +11,7 @@ public interface IRunRepository {
     void addRun(Run run);
 
     //read
-    List<Run> getRunsByCategory(Category category);
+    List<Run> getRunsByCategory(int categoryId);
     List<Run> getRunsByUser(User user);
     Run getRunById(int id);
 

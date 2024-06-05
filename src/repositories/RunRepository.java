@@ -20,7 +20,7 @@ public class RunRepository implements IRunRepository {
         Category category = gameRepo.getCategoriesByGame(gameRepo.getGameById(1)).get(0);
         //Run r = new Run(1, "run1", 1, 1, "link", 7, 32, 2, 255);
         //runRepo.addRun(r);
-        System.out.println(runRepo.getRunsByCategory(category));
+        System.out.println(runRepo.getRunsByCategory(category.getCategoryId()));
     }
 
 //    public static void main(String[] args) {
@@ -95,7 +95,7 @@ public class RunRepository implements IRunRepository {
     }
 
     @Override
-    public List<Run> getRunsByCategory(Category category) {
+    public List<Run> getRunsByCategory(int categoryId) {
         Connection connection = null;
 
         try {
@@ -103,7 +103,7 @@ public class RunRepository implements IRunRepository {
             String sql = "SELECT * FROM Runs WHERE categoryId = ?";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, category.getCategoryId());
+            stmt.setInt(1, categoryId);
 
             ResultSet resultSet = stmt.executeQuery();
             return mapToRunList(resultSet, connection);

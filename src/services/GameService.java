@@ -23,35 +23,35 @@ public class GameService {
         return gameService;
     }
 
-    void addGame(Game game){
+    public void addGame(Game game){
         gameRepository.addGame(game);
     }
 
-    void createCategory(Category category){
+    public void createCategory(Category category){
         gameRepository.createCategory(category);
     }
 
-    Game getGameByName(String name){
+    public Game getGameByName(String name){
         return gameRepository.getGameByName(name);
     }
 
-    Game getGameById(int id){
+    public Game getGameById(int id){
         return gameRepository.getGameById(id);
     }
 
-    List<Game> getAllGames(){
+    public List<Game> getAllGames(){
         return gameRepository.getAllGames();
     }
 
-    ArrayList<Category> getCategoriesByGame(Game game){
+    public ArrayList<Category> getCategoriesByGame(Game game){
         return gameRepository.getCategoriesByGame(game);
     }
 
-    void updateGameName(int id, String newName){
+    public void updateGameName(int id, String newName){
         gameRepository.updateGameName(id, newName);
     }
 
-    void removeGame(int id){
+    public void removeGame(int id){
         gameRepository.removeGame(id);
     }
 }

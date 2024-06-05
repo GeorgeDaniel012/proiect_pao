@@ -67,3 +67,7 @@ insert into games values
 
 insert into categories values
 (1, "aaa", "bbb", 1, true);
+
+/* may be needed */
+DELETE FROM Games
+WHERE gameId NOT IN (SELECT DISTINCT gameId FROM GameModerators);

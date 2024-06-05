@@ -20,27 +20,27 @@ public class CountryService {
         return countryService;
     }
 
-    void addCountry(Country country){
+    public void addCountry(Country country){
         countryRepository.addCountry(country);
     }
 
-    Country getCountryByName(String name){
+    public Country getCountryByName(String name){
         return countryRepository.getCountryByName(name);
     }
 
-    Country getCountryById(int id){
+    public Country getCountryById(int id){
         return countryRepository.getCountryById(id);
     }
 
-    List<Country> getAllCountries(){
+    public List<Country> getAllCountries(){
         return countryRepository.getAllCountries();
     }
 
-    void updateCountryName(int id, String newName){
+    public void updateCountryName(int id, String newName){
         countryRepository.updateCountryName(id, newName);
     }
 
-    void removeCountry(int id){
+    public void removeCountry(int id){
         countryRepository.removeCountry(id);
     }
 }

@@ -23,27 +23,27 @@ public class RunService {
         return runService;
     }
 
-    void addRun(Run run){
+    public void addRun(Run run){
         runRepository.addRun(run);
     }
 
-    List<Run> getRunsByCategory(Category category){
-        return runRepository.getRunsByCategory(category);
+    public List<Run> getRunsByCategory(int categoryId){
+        return runRepository.getRunsByCategory(categoryId);
     }
 
-    List<Run> getRunsByUser(User user){
+    public List<Run> getRunsByUser(User user){
         return runRepository.getRunsByUser(user);
     }
 
-    Run getRunById(int id){
+    public Run getRunById(int id){
         return runRepository.getRunById(id);
     }
 
-    void updateLink(int id, String newLink){
+    public void updateLink(int id, String newLink){
         runRepository.updateLink(id, newLink);
     }
 
-    void removeRun(int id){
+    public void removeRun(int id){
         runRepository.removeRun(id);
     }
 }

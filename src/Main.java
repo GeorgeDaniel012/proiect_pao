@@ -1,7 +1,20 @@
 //import services.RecordService;
 
 
+import models.*;
+import services.CountryService;
+import services.GameService;
+import services.RunService;
+import services.UserService;
+
+import java.util.Scanner;
+
 public class Main {
+    private static final CountryService countryService = CountryService.getInstance();
+    private static final UserService userService = UserService.getInstance();
+    private static final GameService gameService = GameService.getInstance();
+    private static final RunService runService = RunService.getInstance();
+
 //    public static void main(String[] args) {
 //        Country t1 = new Country("Jamaica");
 //        Country t2 = new Country("Romania");
@@ -88,5 +101,322 @@ public class Main {
 //        //CounterRecord r7 = RecordService.addCounterRecordToCategory(c1, "aaaa", u2, "link2", 23);
 //    }
 
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Speedrunning Database App!");
+        while(true){
+            System.out.println("What would you like to do?");
+            System.out.println("c - view or modify countries");
+            System.out.println("u - view or modify users");
+            System.out.println("g - view or modify games");
+            System.out.println("r - view or modify runs");
+            System.out.println("q - quit");
 
+            Scanner scanner = new Scanner(System.in);
+            String option = scanner.nextLine();
+
+            switch(option){
+                case "q":
+                    System.exit(0);
+                    break;
+                case "c":
+                    countryEdit();
+                    break;
+                case "u":
+                    userEdit();
+                    break;
+                case "g":
+                    gameEdit();
+                    break;
+                case "r":
+                    runEdit();
+                    break;
+            }
+        }
+    }
+
+    private static void countryEdit() {
+        System.out.println("What would you like to do with the countries?");
+        System.out.println("a - add new country");
+        System.out.println("cn - get country by name");
+        System.out.println("ci - get country by id");
+        System.out.println("ca - get all countries");
+        System.out.println("u - update a country's name");
+        System.out.println("r - remove a country");
+        System.out.println("q - exit country menu");
+
+        Scanner scanner = new Scanner(System.in);
+        String option = scanner.nextLine();
+
+        String name;
+        int id;
+
+        switch(option){
+            case "q":
+                break;
+            case "a":
+                System.out.println("Country name:");
+                name = scanner.nextLine();
+                countryService.addCountry(new Country(name));
+                break;
+            case "cn":
+                System.out.println("Country name:");
+                name = scanner.nextLine();
+                System.out.println(countryService.getCountryByName(name));
+                break;
+            case "ci":
+                System.out.println("Country id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println(countryService.getCountryById(id));
+                break;
+            case "ca":
+                System.out.println(countryService.getAllCountries());
+                break;
+            case "u":
+                System.out.println("Country id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("New country name:");
+                name = scanner.nextLine();
+                countryService.updateCountryName(id, name);
+                break;
+            case "r":
+                System.out.println("Country id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                countryService.removeCountry(id);
+                break;
+            default:
+                System.out.println("Invalid command.");
+                break;
+        }
+    }
+
+    private static void userEdit() {
+        System.out.println("What would you like to do with the users?");
+        System.out.println("a - add new user");
+        System.out.println("un - get user by name");
+        System.out.println("ui - get user by id");
+        System.out.println("ua - get all users");
+        System.out.println("u - update an user's name");
+        System.out.println("r - remove an user");
+        System.out.println("q - exit user menu");
+
+        Scanner scanner = new Scanner(System.in);
+        String option = scanner.nextLine();
+
+        String name, email, gender;
+        int id;
+
+        switch(option){
+            case "q":
+                break;
+            case "a":
+                System.out.println("Username:");
+                name = scanner.nextLine();
+                System.out.println("Country id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Email:");
+                email = scanner.nextLine();
+                System.out.println("Gender:");
+                gender = scanner.nextLine();
+                userService.addUser(new User(name, countryService.getCountryById(id),
+                        email, gender));
+                break;
+            case "un":
+                System.out.println("Username:");
+                name = scanner.nextLine();
+                System.out.println(userService.getUserByName(name));
+                break;
+            case "ui":
+                System.out.println("User id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println(userService.getUserById(id));
+                break;
+            case "ua":
+                System.out.println(userService.getAllUsers());
+                break;
+            case "u":
+                System.out.println("User id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("New username:");
+                name = scanner.nextLine();
+                userService.updateUsername(id, name);
+                break;
+            case "r":
+                System.out.println("User id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                userService.removeUser(id);
+                break;
+            default:
+                System.out.println("Invalid command.");
+                break;
+        }
+    }
+
+    private static void gameEdit() {
+        System.out.println("What would you like to do with the games?");
+        System.out.println("ag - add new game");
+        System.out.println("gn - get game by name");
+        System.out.println("gi - get game by id");
+        System.out.println("ga - get all games");
+        System.out.println("u - update a game's name");
+        System.out.println("c - get a game's categories");
+        System.out.println("ac - add new category to game");
+        System.out.println("r - remove a game");
+        System.out.println("q - exit game menu");
+
+        Scanner scanner = new Scanner(System.in);
+        String option = scanner.nextLine();
+
+        String name, description;
+        int id;
+
+        switch(option){
+            case "q":
+                break;
+            case "ag":
+                System.out.println("Game name:");
+                name = scanner.nextLine();
+                System.out.println("Description:");
+                description = scanner.nextLine();
+                System.out.println("Id of first moderator:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                gameService.addGame(new Game(name, description,
+                        userService.getUserById(id)));
+                break;
+            case "gn":
+                System.out.println("Game name:");
+                name = scanner.nextLine();
+                System.out.println(gameService.getGameByName(name));
+                break;
+            case "gi":
+                System.out.println("Game id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println(gameService.getGameById(id));
+                break;
+            case "ga":
+                System.out.println(gameService.getAllGames());
+                break;
+            case "u":
+                System.out.println("Game id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("New game name:");
+                name = scanner.nextLine();
+                gameService.updateGameName(id, name);
+                break;
+            case "r":
+                System.out.println("Game id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                gameService.removeGame(id);
+                break;
+            case "c":
+                System.out.println("Game id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println(
+                        gameService.getCategoriesByGame(gameService.getGameById(id)));
+            case "ac":
+                System.out.println("Game id:");
+                id = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Category name:");
+                name = scanner.nextLine();
+                System.out.println("Description:");
+                description = scanner.nextLine();
+                gameService.createCategory(new Category(
+                        name, description, gameService.getGameById(id),
+                        CategoryType.RUN, false
+                ));
+                break;
+            default:
+                System.out.println("Invalid command.");
+                break;
+        }
+    }
+
+    private static void runEdit() {
+        System.out.println("What would you like to do with the runs?");
+        System.out.println("a - add new run");
+        System.out.println("ru - get runs by user");
+        System.out.println("rc - get runs from category");
+        System.out.println("ri - get run by id");
+        System.out.println("u - update a run's link");
+        System.out.println("r - remove a run");
+        System.out.println("q - exit run menu");
+
+        Scanner scanner = new Scanner(System.in);
+        String option = scanner.nextLine();
+
+        String link, description;
+        int uid, cid, rid, h, m, s, ms;
+
+        switch(option){
+            case "q":
+                break;
+            case "a":
+                System.out.println("User id:");
+                uid = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Category id:");
+                cid = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Description:");
+                description = scanner.nextLine();
+                System.out.println("Link:");
+                link = scanner.nextLine();
+                System.out.println("Hours, minutes, seconds, milliseconds");
+                h = scanner.nextInt();
+                m = scanner.nextInt();
+                s = scanner.nextInt();
+                ms = scanner.nextInt();
+                scanner.nextLine();
+                runService.addRun(new Run(description, uid, cid, link,
+                        h, m, s, ms));
+                break;
+            case "ru":
+                System.out.println("User id:");
+                uid = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println(runService.getRunById(uid));
+                break;
+            case "rc":
+                System.out.println("Category id:");
+                cid = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println(runService.getRunsByCategory(cid));
+                break;
+            case "ri":
+                System.out.println("Run id:");
+                rid = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println(runService.getRunById(rid));
+                break;
+            case "u":
+                System.out.println("Run id:");
+                rid = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("New link:");
+                link = scanner.nextLine();
+                runService.updateLink(rid, link);
+                break;
+            case "r":
+                System.out.println("Run id:");
+                rid = scanner.nextInt();
+                scanner.nextLine();
+                runService.removeRun(rid);
+                break;
+            default:
+                System.out.println("Invalid command.");
+                break;
+        }
+    }
 }

@@ -21,27 +21,27 @@ public class UserService {
         return userService;
     }
 
-    void addUser(User user){
+    public  void addUser(User user){
         userRepository.addUser(user);
     }
 
-    User getUserByName(String name){
+    public User getUserByName(String name){
         return userRepository.getUserByName(name);
     }
 
-    User getUserById(int id){
+    public User getUserById(int id){
         return userRepository.getUserById(id);
     }
 
-    List<User> getAllUsers(){
+    public List<User> getAllUsers(){
         return userRepository.getAllUsers();
     }
 
-    void updateUsername(int id, String newName){
+    public void updateUsername(int id, String newName){
         userRepository.updateUsername(id, newName);
     }
 
-    void removeUser(int id){
+    public void removeUser(int id){
         userRepository.removeUser(id);
     }
 }
